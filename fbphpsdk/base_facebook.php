@@ -361,6 +361,7 @@ abstract class BaseFacebook
           'fb_exchange_token' => $this->getAccessToken(),
         )
       );
+			echo $access_token_response;
     }
     catch (FacebookApiException $e) {
       // most likely that user very recently revoked authorization.

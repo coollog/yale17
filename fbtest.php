@@ -1,6 +1,6 @@
 <?php require_once('fbheader.php'); ?>
 
-<?php if ($ingroup) { 
+<?php if ($_SESSION['ingroup'] == 1) { 
 	// Replace code below with what is displayed to verified users. ?>
 	All good!
 <?php } else { 

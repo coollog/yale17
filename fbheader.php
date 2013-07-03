@@ -8,8 +8,9 @@
 	));
 
 	$user = $facebook->getUser();
-	$error = null;
-	$ingroup = false;
+	echo $user;
+	$_SESSION['error'] = 0;
+	$_SESSION['ingroup'] = 0;
 	if ($user) {
 		try {
 			// User is logged in.
@@ -17,7 +18,7 @@
 			$groups = $facebook->api('me/groups?fields=id');
 			foreach($groups['data'] as $group) {
 				if ($group['id'] == 386287368059235) {
-					$ingroup = true;
+					$_SESSION['ingroup'] = 1;
 					$userlist = getusers();
 					if(!in_array($user, $userlist)){
 						array_push($userlist, $user);
@@ -26,17 +27,17 @@
 					break;
 				}
 			}
-			if (!$ingroup) {
-				$error = 'You must be in the <a href="https://www.facebook.com/groups/386287368059235/">Yale College Class of 2017</a> group.';
+			if ($_SESSION['ingroup'] == 0) {
+				$_SESSION['error'] = 'You must be in the <a href="https://www.facebook.com/groups/386287368059235/">Yale College Class of 2017</a> group.';
 			}
 		} catch (FacebookApiException $e) {
 			// User is not logged in.
 			$loginUrl = $facebook->getLoginUrl();
-			$error = "Not connected!";
+			$_SESSION['error'] = "Connection error!";
 			$user = null;
 		}
 	} else {
-		$error = "Not connected!";
+		$_SESSION['error'] = "Not connected!";
 	}
 	
 	function isappuser($userid) {

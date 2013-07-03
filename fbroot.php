@@ -1,25 +1,8 @@
 <div id="fb-root"></div>
-<script>
-	window.fbAsyncInit = function() {
-		FB.init({
-			appId: '<?php echo $facebook->getAppID() ?>',
-			channelUrl : '//www.yale17.com/channel.html', // Channel File
-			status: true,
-			cookie: true,
-			xfbml: true,
-			oauth: true,
-		});
-		FB.Event.subscribe('auth.login', function(response) {
-			window.location.reload();
-		});
-		FB.Event.subscribe('auth.logout', function(response) {
-			window.location.reload();
-		});
-	};
-	(function() {
-		var e = document.createElement('script'); e.async = true;
-		e.src = document.location.protocol +
-			'//connect.facebook.net/en_US/all.js';
-		document.getElementById('fb-root').appendChild(e);
-	}());
-</script>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=642157445814007";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
